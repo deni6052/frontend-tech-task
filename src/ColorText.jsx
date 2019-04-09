@@ -9,14 +9,13 @@ class ColorText extends Component {
             data: null,
             isBlack: false,
             textColor: '#888',
+            textValue: "Click me to change my color."
         };
     }
     
     componentDidMount(){
         const URL = 'http://www.colr.org/json/colors/random/';
-        const numOfColors = 2;
-
-              
+        const numOfColors = 2; 
         
         fetch(URL + numOfColors, {
             method: 'GET'
@@ -43,14 +42,28 @@ class ColorText extends Component {
         })
     }
 
+    handleChange(event) {
+        this.setState({textValue: event.target.value});
+    }
+
     render(){
         return(
-            <div
-            style={{
-                color : this.state.textColor
-            }}
-            onClick = {this.changeColor.bind(this)}
-            >Click me to change my color.</div>
+            <div>
+                <div
+                style={{
+                    color : this.state.textColor,
+                }}
+                onClick = {this.changeColor.bind(this)}>
+                {this.state.textValue}
+                </div>
+
+                <input type="text"
+                    value={this.state.textValue}
+                    onChange={this.handleChange.bind(this)}
+                    style={{width: "250px"}}>
+                </input>
+            </div>
+
         )
     }
 }
