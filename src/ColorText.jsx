@@ -21,13 +21,7 @@ class ColorText extends Component {
             method: 'GET'
         })
         .then( response => response.json() )
-        .then( json => this.setState({data: json.colors}, 
-            function() {
-                console.log(this.state.data);
-
-            }));
-
-        
+        .then( json => this.setState({data: json.colors})); 
     }
 
     changeColor(){
